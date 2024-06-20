@@ -10,11 +10,11 @@ public class Jugador {
     private String nacionalidad;
     private int numeroCamiseta;
     private List<Integer> equipo;
-    private List<String> lesiones;
-    private List<String> rendimientos;
+    private List<Integer> lesiones;
+    private List<Integer> rendimientos;
 
     public Jugador(int id, String nombre, int edad, String posicion, String nacionalidad, int numeroCamiseta,
-            List<Integer> equipo, List<String> lesiones, List<String> rendimientos) {
+            List<Integer> equipo, List<Integer> lesiones, List<Integer> rendimientos) {
         this.id = id;
         this.nombre = nombre;
         this.edad = edad;
@@ -82,19 +82,19 @@ public class Jugador {
         this.equipo = equipo;
     }
 
-    public List<String> getLesiones() {
+    public List<Integer> getLesiones() {
         return lesiones;
     }
 
-    public void setLesiones(List<String> lesiones) {
+    public void setLesiones(List<Integer> lesiones) {
         this.lesiones = lesiones;
     }
 
-    public List<String> getRendimientos() {
+    public List<Integer> getRendimientos() {
         return rendimientos;
     }
 
-    public void setRendimientos(List<String> rendimientos) {
+    public void setRendimientos(List<Integer> rendimientos) {
         this.rendimientos = rendimientos;
     }
 
