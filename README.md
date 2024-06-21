@@ -118,7 +118,7 @@ gestionada por el sistema.
 - goles : Número de goles anotados por el jugador en el partido.
 - asistencias : Número de asistencias del jugador en el partido.
 - tarjetasAmarillas : Número de tarjetas amarillas recibidas por el jugador en el partido.
-- tarjetasRojas : Número de tarjetas rojas recibidas por el jugador en el partido.
+- tarjetaRoja : Número de tarjetas rojas recibidas por el jugador en el partido.
 ### Clase Entrenamiento
 - id : Identificador único del entrenamiento.
 - equipo : Equipo que realiza el entrenamiento.
