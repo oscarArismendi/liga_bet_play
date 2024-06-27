@@ -1,31 +1,31 @@
 package com.o2.liga_bet_play.model.entity;
 
 public class Incidente {
-    private int id;
-    private int partido;
+    private String id;
+    private Partido partido;
     private String descripcion;
     private int minuto;
-    
-    public Incidente(int id, int partido, String descripcion, int minuto) {
+
+    public Incidente(String id, Partido partido, String descripcion, int minuto) {
         this.id = id;
         this.partido = partido;
         this.descripcion = descripcion;
         this.minuto = minuto;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getPartido() {
+    public Partido getPartido() {
         return partido;
     }
 
-    public void setPartido(int partido) {
+    public void setPartido(Partido partido) {
         this.partido = partido;
     }
 
@@ -44,6 +44,8 @@ public class Incidente {
     public void setMinuto(int minuto) {
         this.minuto = minuto;
     }
-
+    
+    
+    
     
 }

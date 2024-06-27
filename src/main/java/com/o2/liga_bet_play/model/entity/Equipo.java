@@ -1,31 +1,26 @@
 package com.o2.liga_bet_play.model.entity;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Equipo {
-    private int id;
+    private String id;
     private String nombre;
     private String ciudad;
-    private List<Integer> estadio;
-    private List<Integer> entrenador;
-    private List<Integer> jugadores;
-    private List<Integer> partidos;
+    private Estadio estadio;
+    private Entrenador entrenador;
+    private List<Jugador> lstJugadores;
+    private List<Partido> lstPartidos;
     
-    public Equipo(int id, String nombre, String ciudad, List<Integer> estadio, List<Integer> entrenador,
-            List<Integer> jugadores, List<Integer> partidos) {
-        this.id = id;
-        this.nombre = nombre;
-        this.ciudad = ciudad;
-        this.estadio = estadio;
-        this.entrenador = entrenador;
-        this.jugadores = jugadores;
-        this.partidos = partidos;
+    public Equipo() {
+        lstJugadores = new ArrayList<Jugador>();
+        lstPartidos = new ArrayList<Partido>();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,38 +40,40 @@ public class Equipo {
         this.ciudad = ciudad;
     }
 
-    public List<Integer> getEstadio() {
+    public Estadio getEstadio() {
         return estadio;
     }
 
-    public void setEstadio(List<Integer> estadio) {
+    public void setEstadio(Estadio estadio) {
         this.estadio = estadio;
     }
 
-    public List<Integer> getEntrenador() {
+    public Entrenador getEntrenador() {
         return entrenador;
     }
 
-    public void setEntrenador(List<Integer> entrenador) {
+    public void setEntrenador(Entrenador entrenador) {
         this.entrenador = entrenador;
     }
 
-    public List<Integer> getJugadores() {
-        return jugadores;
+    public List<Jugador> getLstJugadores() {
+        return lstJugadores;
     }
 
-    public void setJugadores(List<Integer> jugadores) {
-        this.jugadores = jugadores;
+    public void setLstJugadores(Jugador jugador) {
+        this.lstJugadores.add(jugador);
     }
 
-    public List<Integer> getPartidos() {
-        return partidos;
+    public List<Partido> getLstPartidos() {
+        return lstPartidos;
     }
 
-    public void setPartidos(List<Integer> partidos) {
-        this.partidos = partidos;
+    public void setLstPartidos(Partido partido) {
+        this.lstPartidos.add(partido);
     }
-
+    
+    
+    
     
     
 }

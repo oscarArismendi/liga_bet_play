@@ -1,21 +1,21 @@
 package com.o2.liga_bet_play.model.entity;
 
 public class Actividad {
-    private int id;
+    private String id;
     private String descripcion;
     private String duracion;
-    
-    public Actividad(int id, String descripcion, String duracion) {
+
+    public Actividad(String id, String descripcion, String duracion) {
         this.id = id;
         this.descripcion = descripcion;
         this.duracion = duracion;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -35,5 +35,4 @@ public class Actividad {
         this.duracion = duracion;
     }
 
-    
 }

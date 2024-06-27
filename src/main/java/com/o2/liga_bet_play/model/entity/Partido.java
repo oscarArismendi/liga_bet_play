@@ -1,55 +1,47 @@
 package com.o2.liga_bet_play.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Partido {
 
-    private int id;
-    private int equipoLocal;
-    private int equipoVisitante;
+    private String id;
+    private Equipo equipoLocal;
+    private Equipo equipoVisitante;
     private String fecha;
     private String hora;
-    private int estadio;
-    private List<Integer> goles;
-    private List<Integer> tarjetas;
-    private List<Integer> incidentes;
-    private List<Integer> resultado;
-    
-    public Partido(int id, int equipoLocal, int equipoVisitante, String fecha, String hora, int estadio,
-            List<Integer> goles, List<Integer> tarjetas, List<Integer> incidentes, List<Integer> resultado) {
-        this.id = id;
-        this.equipoLocal = equipoLocal;
-        this.equipoVisitante = equipoVisitante;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.estadio = estadio;
-        this.goles = goles;
-        this.tarjetas = tarjetas;
-        this.incidentes = incidentes;
-        this.resultado = resultado;
+    private Estadio estadio;
+    private List<Gol> lstGoles;
+    private List<Tarjeta> lstTarjetas;
+    private List<Incidente> lstIncidentes;
+    private Resultado resultado;
+
+    public Partido() {
+        lstTarjetas = new ArrayList<Tarjeta>();
+        lstIncidentes = new ArrayList<Incidente>();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getEquipoLocal() {
+    public Equipo getEquipoLocal() {
         return equipoLocal;
     }
 
-    public void setEquipoLocal(int equipoLocal) {
+    public void setEquipoLocal(Equipo equipoLocal) {
         this.equipoLocal = equipoLocal;
     }
 
-    public int getEquipoVisitante() {
+    public Equipo getEquipoVisitante() {
         return equipoVisitante;
     }
 
-    public void setEquipoVisitante(int equipoVisitante) {
+    public void setEquipoVisitante(Equipo equipoVisitante) {
         this.equipoVisitante = equipoVisitante;
     }
 
@@ -69,46 +61,44 @@ public class Partido {
         this.hora = hora;
     }
 
-    public int getEstadio() {
+    public Estadio getEstadio() {
         return estadio;
     }
 
-    public void setEstadio(int estadio) {
+    public void setEstadio(Estadio estadio) {
         this.estadio = estadio;
     }
 
-    public List<Integer> getGoles() {
-        return goles;
+    public List<Gol> getGoles() {
+        return lstGoles;
     }
 
-    public void setGoles(List<Integer> goles) {
-        this.goles = goles;
+    public void setGoles(Gol gol) {
+        this.lstGoles.add(gol);
     }
 
-    public List<Integer> getTarjetas() {
-        return tarjetas;
+    public List<Tarjeta> getLstTarjetas() {
+        return lstTarjetas;
     }
 
-    public void setTarjetas(List<Integer> tarjetas) {
-        this.tarjetas = tarjetas;
+    public void setLstTarjetas(Tarjeta tarjeta) {
+        this.lstTarjetas.add(tarjeta);
     }
 
-    public List<Integer> getIncidentes() {
-        return incidentes;
+    public List<Incidente> getLstIncidentes() {
+        return lstIncidentes;
     }
 
-    public void setIncidentes(List<Integer> incidentes) {
-        this.incidentes = incidentes;
+    public void setLstIncidentes(Incidente incidente) {
+        this.lstIncidentes.add(incidente);
     }
 
-    public List<Integer> getResultado() {
+    public Resultado getResultado() {
         return resultado;
     }
 
-    public void setResultado(List<Integer> resultado) {
+    public void setResultado(Resultado resultado) {
         this.resultado = resultado;
     }
-    
-    
-    
+
 }

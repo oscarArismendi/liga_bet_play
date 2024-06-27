@@ -1,13 +1,13 @@
 package com.o2.liga_bet_play.model.entity;
 
 public class Gol {
-    private int id;
-    private int jugador;
-    private int equipo;
+    private String id;
+    private Jugador jugador;
+    private Equipo equipo;
     private int minuto;
-    private int partido;
-    
-    public Gol(int id, int jugador, int equipo, int minuto, int partido) {
+    private Partido partido;
+
+    public Gol(String id, Jugador jugador, Equipo equipo, int minuto, Partido partido) {
         this.id = id;
         this.jugador = jugador;
         this.equipo = equipo;
@@ -15,27 +15,27 @@ public class Gol {
         this.partido = partido;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getJugador() {
+    public Jugador getJugador() {
         return jugador;
     }
 
-    public void setJugador(int jugador) {
+    public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
 
-    public int getEquipo() {
+    public Equipo getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(int equipo) {
+    public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
 
@@ -47,14 +47,12 @@ public class Gol {
         this.minuto = minuto;
     }
 
-    public int getPartido() {
+    public Partido getPartido() {
         return partido;
     }
 
-    public void setPartido(int partido) {
+    public void setPartido(Partido partido) {
         this.partido = partido;
     }
-
-    
 
 }

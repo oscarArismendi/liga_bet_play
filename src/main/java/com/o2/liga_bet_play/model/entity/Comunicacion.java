@@ -1,27 +1,24 @@
 package com.o2.liga_bet_play.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Comunicacion {
-    private int id;
+    private String id;
     private String titulo;
     private String contenido;
     private String fechaPublicacion;
-    private List<Usuario> destinatarios; // Lista de usuarios destinatarios de la comunicación.
-    
-    public Comunicacion(int id, String titulo, String contenido, String fechaPublicacion, List<Usuario> destinatarios) {
-        this.id = id;
-        this.titulo = titulo;
-        this.contenido = contenido;
-        this.fechaPublicacion = fechaPublicacion;
-        this.destinatarios = destinatarios;
+    private List<Usuario> LstDestinatarios; // Lista de usuarios destinatarios de la comunicación.
+
+    public Comunicacion() {
+        LstDestinatarios = new ArrayList<Usuario>();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -49,14 +46,12 @@ public class Comunicacion {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public List<Usuario> getDestinatarios() {
-        return destinatarios;
+    public List<Usuario> getLstDestinatarios() {
+        return LstDestinatarios;
     }
 
-    public void setDestinatarios(List<Usuario> destinatarios) {
-        this.destinatarios = destinatarios;
+    public void setLstDestinatarios(Usuario usuario) {
+        this.LstDestinatarios.add(usuario);
     }
 
-    
-    
 }

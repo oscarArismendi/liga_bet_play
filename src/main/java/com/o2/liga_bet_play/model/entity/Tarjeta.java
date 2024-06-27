@@ -1,13 +1,13 @@
 package com.o2.liga_bet_play.model.entity;
 
 public class Tarjeta {
-    private int id;
-    private int jugador;
-    private int partido;
+    private String id;
+    private Jugador jugador;
+    private Partido partido;
     private String tipo;// amarilla o roja
     private int minuto;
     
-    public Tarjeta(int id, int jugador, int partido, String tipo, int minuto) {
+    public Tarjeta(String id, Jugador jugador, Partido partido, String tipo, int minuto) {
         this.id = id;
         this.jugador = jugador;
         this.partido = partido;
@@ -15,27 +15,27 @@ public class Tarjeta {
         this.minuto = minuto;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getJugador() {
+    public Jugador getJugador() {
         return jugador;
     }
 
-    public void setJugador(int jugador) {
+    public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
 
-    public int getPartido() {
+    public Partido getPartido() {
         return partido;
     }
 
-    public void setPartido(int partido) {
+    public void setPartido(Partido partido) {
         this.partido = partido;
     }
 

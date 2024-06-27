@@ -2,14 +2,14 @@ package com.o2.liga_bet_play.model.entity;
 
 public class Entrada {
     private int id;
-    private int partido;
+    private Partido partido;
     private int comprador;
     private String fechaCompra;
     private int cantidad;
     private double precioTotal;
     private String ubicacion;
-    
-    public Entrada(int id, int partido, int comprador, String fechaCompra, int cantidad, double precioTotal,
+
+    public Entrada(int id, Partido partido, int comprador, String fechaCompra, int cantidad, double precioTotal,
             String ubicacion) {
         this.id = id;
         this.partido = partido;
@@ -28,11 +28,11 @@ public class Entrada {
         this.id = id;
     }
 
-    public int getPartido() {
+    public Partido getPartido() {
         return partido;
     }
 
-    public void setPartido(int partido) {
+    public void setPartido(Partido partido) {
         this.partido = partido;
     }
 
@@ -76,5 +76,4 @@ public class Entrada {
         this.ubicacion = ubicacion;
     }
 
-    
 }
