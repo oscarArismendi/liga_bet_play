@@ -7,6 +7,11 @@ public class Gol {
     private int minuto;
     private Partido partido;
 
+    public Gol(String id, int minuto) {
+        this.id = id;
+        this.minuto = minuto;
+    }
+
     public Gol(String id, Jugador jugador, Equipo equipo, int minuto, Partido partido) {
         this.id = id;
         this.jugador = jugador;

@@ -1,40 +1,39 @@
 package com.o2.liga_bet_play.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Entrenamiento {
-    private int id;
-    private int equipo;
+    private String id;
+    private Equipo equipo;
     private String fecha;
     private String hora;
     private String lugar;
-    private List<Integer> actividades;
-    private List<Integer> jugadoresConvocados;
-    
-    public Entrenamiento(int id, int equipo, String fecha, String hora, String lugar, List<Integer> actividades,
-            List<Integer> jugadoresConvocados) {
+    private List<Actividad> lstActividades;
+    private List<Jugador> lstJugadoresConvocados;
+
+    public Entrenamiento(String id, String fecha, String hora, String lugar) {
         this.id = id;
-        this.equipo = equipo;
         this.fecha = fecha;
         this.hora = hora;
         this.lugar = lugar;
-        this.actividades = actividades;
-        this.jugadoresConvocados = jugadoresConvocados;
+        lstActividades = new ArrayList<Actividad>();
+        lstJugadoresConvocados = new ArrayList<Jugador>();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getEquipo() {
+    public Equipo getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(int equipo) {
+    public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
 
@@ -62,21 +61,28 @@ public class Entrenamiento {
         this.lugar = lugar;
     }
 
-    public List<Integer> getActividades() {
-        return actividades;
+    public List<Actividad> getLstActividades() {
+        return lstActividades;
     }
 
-    public void setActividades(List<Integer> actividades) {
-        this.actividades = actividades;
+    public void setLstActividades(Actividad actividad) {
+        this.lstActividades.add(actividad);
     }
 
-    public List<Integer> getJugadoresConvocados() {
-        return jugadoresConvocados;
+    public void deleteLstActividades(Actividad actividad) {
+        this.lstActividades.remove(actividad);
     }
 
-    public void setJugadoresConvocados(List<Integer> jugadoresConvocados) {
-        this.jugadoresConvocados = jugadoresConvocados;
+    public List<Jugador> getLstJugadoresConvocados() {
+        return lstJugadoresConvocados;
     }
 
-    
+    public void setLstJugadoresConvocados(Jugador jugador) {
+        this.lstJugadoresConvocados.add(jugador);
+    }
+
+    public void deleteLstJugadoresConvocados(Jugador jugador) {
+        this.lstJugadoresConvocados.remove(jugador);
+    }
+
 }

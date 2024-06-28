@@ -6,6 +6,12 @@ public class Incidente {
     private String descripcion;
     private int minuto;
 
+    public Incidente(String id, String descripcion, int minuto) {
+        this.id = id;
+        this.descripcion = descripcion;
+        this.minuto = minuto;
+    }
+
     public Incidente(String id, Partido partido, String descripcion, int minuto) {
         this.id = id;
         this.partido = partido;
@@ -44,8 +50,5 @@ public class Incidente {
     public void setMinuto(int minuto) {
         this.minuto = minuto;
     }
-    
-    
-    
-    
+
 }

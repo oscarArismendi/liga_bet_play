@@ -17,6 +17,16 @@ public class Partido {
     private Resultado resultado;
 
     public Partido() {
+        lstGoles = new ArrayList<Gol>();
+        lstTarjetas = new ArrayList<Tarjeta>();
+        lstIncidentes = new ArrayList<Incidente>();
+    }
+
+    public Partido(String id, String fecha, String hora) {
+        this.id = id;
+        this.fecha = fecha;
+        this.hora = hora;
+        lstGoles = new ArrayList<Gol>();
         lstTarjetas = new ArrayList<Tarjeta>();
         lstIncidentes = new ArrayList<Incidente>();
     }
@@ -69,12 +79,16 @@ public class Partido {
         this.estadio = estadio;
     }
 
-    public List<Gol> getGoles() {
+    public List<Gol> getLstGoles() {
         return lstGoles;
     }
 
-    public void setGoles(Gol gol) {
+    public void setLstGoles(Gol gol) {
         this.lstGoles.add(gol);
+    }
+
+    public void deleteLstGoles(Gol gol) {
+        this.lstGoles.remove(gol);
     }
 
     public List<Tarjeta> getLstTarjetas() {
@@ -85,12 +99,20 @@ public class Partido {
         this.lstTarjetas.add(tarjeta);
     }
 
+    public void deleteLstTarjetas(Tarjeta tarjeta) {
+        this.lstTarjetas.remove(tarjeta);
+    }
+
     public List<Incidente> getLstIncidentes() {
         return lstIncidentes;
     }
 
     public void setLstIncidentes(Incidente incidente) {
         this.lstIncidentes.add(incidente);
+    }
+
+    public void deleteLstIncidentes(Incidente incidente) {
+        this.lstIncidentes.remove(incidente);
     }
 
     public Resultado getResultado() {

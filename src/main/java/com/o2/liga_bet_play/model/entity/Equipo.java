@@ -1,4 +1,5 @@
 package com.o2.liga_bet_play.model.entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,16 @@ public class Equipo {
     private Entrenador entrenador;
     private List<Jugador> lstJugadores;
     private List<Partido> lstPartidos;
-    
+
     public Equipo() {
+        lstJugadores = new ArrayList<Jugador>();
+        lstPartidos = new ArrayList<Partido>();
+    }
+
+    public Equipo(String id, String nombre, String ciudad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.ciudad = ciudad;
         lstJugadores = new ArrayList<Jugador>();
         lstPartidos = new ArrayList<Partido>();
     }
@@ -64,6 +73,10 @@ public class Equipo {
         this.lstJugadores.add(jugador);
     }
 
+    public void deleteLstJugadores(Jugador jugador) {
+        this.lstJugadores.remove(jugador);
+    }
+
     public List<Partido> getLstPartidos() {
         return lstPartidos;
     }
@@ -71,9 +84,9 @@ public class Equipo {
     public void setLstPartidos(Partido partido) {
         this.lstPartidos.add(partido);
     }
-    
-    
-    
-    
-    
+
+    public void deleteLstPartidos(Partido partido) {
+        this.lstPartidos.remove(partido);
+    }
+
 }

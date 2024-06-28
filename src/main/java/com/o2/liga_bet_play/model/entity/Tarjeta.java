@@ -6,7 +6,7 @@ public class Tarjeta {
     private Partido partido;
     private String tipo;// amarilla o roja
     private int minuto;
-    
+
     public Tarjeta(String id, Jugador jugador, Partido partido, String tipo, int minuto) {
         this.id = id;
         this.jugador = jugador;
@@ -55,5 +55,4 @@ public class Tarjeta {
         this.minuto = minuto;
     }
 
-    
 }

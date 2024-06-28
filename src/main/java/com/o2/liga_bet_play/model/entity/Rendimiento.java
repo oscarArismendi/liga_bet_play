@@ -1,92 +1,125 @@
 package com.o2.liga_bet_play.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rendimiento {
-    private int id;
-    private int jugador;
-    private int partido;
+    private String id;
+    private Jugador jugador;
+    private Partido partido;
     private int minutosJugados;
-    private List<Integer> goles;
+    private List<Gol> lstGoles;
     private int asistencias;
-    private List<Integer> tarjetasAmarillas;
-    private int tarjetaRoja;
+    private List<Tarjeta> lstTarjetasAmarillas;
+    private Tarjeta tarjetaRoja;
     
-    public Rendimiento(int id, int jugador, int partido, int minutosJugados, List<Integer> goles, int asistencias,
-            List<Integer> tarjetasAmarillas, int tarjetaRoja) {
-        this.id = id;
-        this.jugador = jugador;
-        this.partido = partido;
-        this.minutosJugados = minutosJugados;
-        this.goles = goles;
-        this.asistencias = asistencias;
-        this.tarjetasAmarillas = tarjetasAmarillas;
-        this.tarjetaRoja = tarjetaRoja;
+
+    
+
+    public Rendimiento() {
+        lstGoles = new ArrayList<Gol>();
+        lstTarjetasAmarillas = new ArrayList<Tarjeta>();
     }
 
-    public int getId() {
+
+    public Rendimiento(String id, int minutosJugados, int asistencias) {
+        this.id = id;
+        this.minutosJugados = minutosJugados;
+        this.asistencias = asistencias;
+        lstGoles = new ArrayList<Gol>();
+        lstTarjetasAmarillas = new ArrayList<Tarjeta>();
+    }
+
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getJugador() {
+
+    public Jugador getJugador() {
         return jugador;
     }
 
-    public void setJugador(int jugador) {
+
+    public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
 
-    public int getPartido() {
+
+    public Partido getPartido() {
         return partido;
     }
 
-    public void setPartido(int partido) {
+
+    public void setPartido(Partido partido) {
         this.partido = partido;
     }
+
 
     public int getMinutosJugados() {
         return minutosJugados;
     }
 
+
     public void setMinutosJugados(int minutosJugados) {
         this.minutosJugados = minutosJugados;
     }
 
-    public List<Integer> getGoles() {
-        return goles;
+
+    public List<Gol> getLstGoles() {
+        return lstGoles;
     }
 
-    public void setGoles(List<Integer> goles) {
-        this.goles = goles;
+
+    public void setLstGoles(Gol gol) {
+        this.lstGoles.add(gol);
     }
+
+    public void deleteLstGoles(Gol gol){
+        this.lstGoles.remove(gol);
+    }
+
 
     public int getAsistencias() {
         return asistencias;
     }
 
+
     public void setAsistencias(int asistencias) {
         this.asistencias = asistencias;
     }
 
-    public List<Integer> getTarjetasAmarillas() {
-        return tarjetasAmarillas;
+
+    public List<Tarjeta> getLstTarjetasAmarillas() {
+        return lstTarjetasAmarillas;
     }
 
-    public void setTarjetasAmarillas(List<Integer> tarjetasAmarillas) {
-        this.tarjetasAmarillas = tarjetasAmarillas;
+
+    public void setLstTarjetasAmarillas(Tarjeta tarjetaAmarilla) {
+        this.lstTarjetasAmarillas.add(tarjetaAmarilla);
     }
 
-    public int getTarjetaRoja() {
+    public void deleteLstTarjetasAmarillas(Tarjeta tarjetaAmarilla){
+        this.lstTarjetasAmarillas.remove(tarjetaAmarilla);
+    }
+
+
+    public Tarjeta getTarjetaRoja() {
         return tarjetaRoja;
     }
 
-    public void setTarjetaRoja(int tarjetaRoja) {
+
+    public void setTarjetaRoja(Tarjeta tarjetaRoja) {
         this.tarjetaRoja = tarjetaRoja;
     }
+
+    
+
 
     
 

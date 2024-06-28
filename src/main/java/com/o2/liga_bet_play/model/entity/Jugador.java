@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Jugador extends Persona {
     private String posicion;
-
     private int numeroCamiseta;
     private Equipo equipo;
     private List<Lesion> lstLesiones;
@@ -20,6 +19,8 @@ public class Jugador extends Persona {
         super(id, nombre, edad, nacionalidad);
         this.numeroCamiseta = numeroCamiseta;
         this.posicion = posicion;
+        lstLesiones = new ArrayList<Lesion>();
+        lstRendimientos = new ArrayList<Rendimiento>();
     }
 
     public String getPosicion() {
@@ -54,12 +55,20 @@ public class Jugador extends Persona {
         this.lstLesiones.add(lesion);
     }
 
+    public void deleteLstLesiones(Lesion lesion) {
+        this.lstLesiones.remove(lesion);
+    }
+
     public List<Rendimiento> getLstRendimientos() {
         return lstRendimientos;
     }
 
     public void setLstRendimientos(Rendimiento rendimiento) {
         this.lstRendimientos.add(rendimiento);
+    }
+
+    public void deleteLstRendimientos(Rendimiento rendimiento) {
+        this.lstRendimientos.remove(rendimiento);
     }
 
 }
