@@ -1,23 +1,23 @@
 package com.o2.liga_bet_play.model.entity;
 
 public class Estadio {
-    private int id;
+    private String id;
     private String nombre;
     private String ubicacion;
     private int capacidad;
     
-    public Estadio(int id, String nombre, String ubicacion, int capacidad) {
+    public Estadio(String id, String nombre, String ubicacion, int capacidad) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.capacidad = capacidad;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

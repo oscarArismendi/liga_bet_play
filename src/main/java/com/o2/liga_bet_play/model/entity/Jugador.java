@@ -11,6 +11,7 @@ public class Jugador extends Persona {
     private List<Rendimiento> lstRendimientos;
 
     public Jugador() {
+        super();
         lstLesiones = new ArrayList<Lesion>();
         lstRendimientos = new ArrayList<Rendimiento>();
     }

@@ -1,30 +1,27 @@
 package com.o2.liga_bet_play.model.entity;
 
 public class Entrada {
-    private int id;
+    private String id;
     private Partido partido;
-    private int comprador;
+    private Usuario comprador;// Usuario que compró la entrada.
     private String fechaCompra;
     private int cantidad;
     private double precioTotal;
     private String ubicacion;
 
-    public Entrada(int id, Partido partido, int comprador, String fechaCompra, int cantidad, double precioTotal,
-            String ubicacion) {
+    public Entrada(String id, String fechaCompra, int cantidad, double precioTotal,            String ubicacion) {
         this.id = id;
-        this.partido = partido;
-        this.comprador = comprador;
         this.fechaCompra = fechaCompra;
         this.cantidad = cantidad;
         this.precioTotal = precioTotal;
         this.ubicacion = ubicacion;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -36,11 +33,11 @@ public class Entrada {
         this.partido = partido;
     }
 
-    public int getComprador() {
+    public Usuario getComprador() {
         return comprador;
     }
 
-    public void setComprador(int comprador) {
+    public void setComprador(Usuario comprador) {
         this.comprador = comprador;
     }
 

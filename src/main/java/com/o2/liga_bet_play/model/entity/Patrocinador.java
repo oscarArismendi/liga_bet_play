@@ -1,14 +1,14 @@
 package com.o2.liga_bet_play.model.entity;
 
 public class Patrocinador {
-    private int id;
+    private String id;
     private String nombre;
     private String tipo; //  (por ejemplo, principal, secundario, etc.).
     private double monto;
     private String fechaInicio;
     private String fechaFin;
 
-    public Patrocinador(int id, String nombre, String tipo, double monto, String fechaInicio, String fechaFin) {
+    public Patrocinador(String id, String nombre, String tipo, double monto, String fechaInicio, String fechaFin) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -17,11 +17,11 @@ public class Patrocinador {
         this.fechaFin = fechaFin;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

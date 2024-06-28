@@ -1,52 +1,48 @@
 package com.o2.liga_bet_play.model.entity;
 
-
 public class Transferencia {
-    private int id;
-    private int jugador;
-    private int equipoOrigen;
-    private int equipoDestino;
+    private String id;
+    private Jugador jugador;
+    private Equipo equipoOrigen;
+    private Equipo equipoDestino;
     private double monto;
     private String fecha;
-    
-    public Transferencia(int id, int jugador, int equipoOrigen, int equipoDestino, double monto, String fecha) {
+
+    public Transferencia(String id, double monto, String fecha) {
         this.id = id;
-        this.jugador = jugador;
-        this.equipoOrigen = equipoOrigen;
-        this.equipoDestino = equipoDestino;
         this.monto = monto;
         this.fecha = fecha;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getJugador() {
+    public Jugador getJugador() {
         return jugador;
     }
 
-    public void setJugador(int jugador) {
+    public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
 
-    public int getEquipoOrigen() {
+    public Equipo getEquipoOrigen() {
         return equipoOrigen;
     }
 
-    public void setEquipoOrigen(int equipoOrigen) {
+    public void setEquipoOrigen(Equipo equipoOrigen) {
         this.equipoOrigen = equipoOrigen;
     }
 
-    public int getEquipoDestino() {
+    public Equipo getEquipoDestino() {
         return equipoDestino;
     }
 
-    public void setEquipoDestino(int equipoDestino) {
+    public void setEquipoDestino(Equipo equipoDestino) {
         this.equipoDestino = equipoDestino;
     }
 
@@ -65,7 +61,5 @@ public class Transferencia {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-
-    
 
 }
