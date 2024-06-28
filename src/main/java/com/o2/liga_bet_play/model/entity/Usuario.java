@@ -1,13 +1,19 @@
 package com.o2.liga_bet_play.model.entity;
 
 public class Usuario {
-    private int id;
+    private String id;
     private String nombre;
     private String email;
     private String password;
-    private int rol;
-    
-    public Usuario(int id, String nombre, String email, String password, int rol) {
+    private Rol rol;
+
+    // Constructor sin argumentos
+    public Usuario() {
+        this.rol = new Rol();
+    }
+
+    // Constructor con argumentos
+    public Usuario(String id, String nombre, String email, String password, Rol rol) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -15,11 +21,12 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public int getId() {
+    // Métodos Getters y Setters
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,13 +54,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public int getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(int rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
-
-    
 }

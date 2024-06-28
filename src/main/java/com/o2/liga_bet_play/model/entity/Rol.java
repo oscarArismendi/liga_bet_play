@@ -1,23 +1,24 @@
 package com.o2.liga_bet_play.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rol {
-    private int id;
+    private String id;
     private String nombre;
-    private List<Integer> permisos;
-    
-    public Rol(int id, String nombre, List<Integer> permisos) {
-        this.id = id;
-        this.nombre = nombre;
-        this.permisos = permisos;
+    private List<Permiso> lstPermisos;
+
+    // Constructor
+    public Rol() {
+        lstPermisos = new ArrayList<Permiso>();
     }
 
-    public int getId() {
+    // Métodos Getters y Setters
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -29,13 +30,17 @@ public class Rol {
         this.nombre = nombre;
     }
 
-    public List<Integer> getPermisos() {
-        return permisos;
+    public List<Permiso> getLstPermisos() {
+        return lstPermisos;
     }
 
-    public void setPermisos(List<Integer> permisos) {
-        this.permisos = permisos;
+    public void setLstPermisos(Permiso permiso) {
+        this.lstPermisos.add(permiso);
     }
 
-    
+    // Método para eliminar un permiso de la lista
+    public void deleteLstPermiso(Permiso permiso) {
+        this.lstPermisos.remove(permiso);
+    }
+
 }
