@@ -40,5 +40,10 @@ public class Persona {
         this.nacionalidad = nacionalidad;
     }
 
+    @Override
+    public String toString() {
+        return "Pesona id=" + id + ", nombre='" + nombre;
+    }
+
     
 }

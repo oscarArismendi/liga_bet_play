@@ -73,4 +73,9 @@ public class Lesion {
         this.fechaFin = fechaFin;
     }
 
+    @Override
+    public String toString() {
+        return "id=" + id + ", jugador=" + (jugador != null ? jugador.getId() : "null");
+    }
+
 }
