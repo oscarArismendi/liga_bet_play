@@ -8,9 +8,16 @@ public class Rol {
     private String nombre;
     private List<Permiso> lstPermisos;
 
-    // Constructor
+    // Constructor sin argumentos
     public Rol() {
         lstPermisos = new ArrayList<Permiso>();
+    }
+
+    // Constructor con argumentos
+    public Rol(String id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+        this.lstPermisos = new ArrayList<>();
     }
 
     // Métodos Getters y Setters
@@ -42,5 +49,4 @@ public class Rol {
     public void deleteLstPermiso(Permiso permiso) {
         this.lstPermisos.remove(permiso);
     }
-
 }
