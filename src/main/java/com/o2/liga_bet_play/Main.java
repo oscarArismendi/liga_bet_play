@@ -6,13 +6,22 @@ package com.o2.liga_bet_play;
 
 import java.util.Scanner;
 
+import com.o2.liga_bet_play.controller.EquipoController;
+import com.o2.liga_bet_play.controller.EstadioController;
 import com.o2.liga_bet_play.controller.JugadorController;
 import com.o2.liga_bet_play.controller.LesionController;
+import com.o2.liga_bet_play.controller.RendimientoController;
+import com.o2.liga_bet_play.persistence.EquipoDao;
+import com.o2.liga_bet_play.persistence.EstadioDao;
 import com.o2.liga_bet_play.persistence.JugadorDao;
 import com.o2.liga_bet_play.persistence.LesionDao;
+import com.o2.liga_bet_play.persistence.RendimientoDao;
+import com.o2.liga_bet_play.service.EstadioServicio;
 import com.o2.liga_bet_play.service.JugadorServicio;
 import com.o2.liga_bet_play.service.LesionServicio;
+import com.o2.liga_bet_play.service.RendimientoServicio;
 import com.o2.liga_bet_play.utils.ConsoleUtils;
+import com.o2.liga_bet_play.view.EstadioView;
 import com.o2.liga_bet_play.view.JugadorView;
 import com.o2.liga_bet_play.view.LesionView;
 
@@ -22,28 +31,43 @@ public class Main {
         //controllers
         JugadorController ctrlJugador = new JugadorController();
         LesionController ctrlLesion = new LesionController();
+        RendimientoController ctrlRendimiento = new RendimientoController();
+        EstadioController ctrlEstadio = new EstadioController();
+        EquipoController ctrlEquipo = new EquipoController();
         //daos
         JugadorDao jugadorDao = new JugadorDao(ctrlJugador);
         LesionDao lesionDao = new  LesionDao(ctrlLesion); 
+        RendimientoDao rendimientoDao = new  RendimientoDao(ctrlRendimiento);
+        EstadioDao estadioDao  = new  EstadioDao(ctrlEstadio);
+        EquipoDao equipoDao =  new EquipoDao(ctrlEquipo);
 
         //servicios
-        JugadorServicio jugadorServicio = new JugadorServicio(jugadorDao,lesionDao);
+        JugadorServicio jugadorServicio = new JugadorServicio(jugadorDao,lesionDao,rendimientoDao);
         LesionServicio lesionServicio = new LesionServicio(lesionDao, jugadorDao);
+        RendimientoServicio rendimientoServicio =  new  RendimientoServicio(rendimientoDao, jugadorDao);
+        EstadioServicio estadioServicio = new EstadioServicio(estadioDao,equipoDao);
+        
         
         //views
         JugadorView jugadorView = new JugadorView(jugadorServicio);
         LesionView  lesionView =  new LesionView(lesionServicio);
+        EstadioView estadioView = new EstadioView(estadioServicio);
         
         //scanners
         Scanner scanner = new Scanner(System.in);
         jugadorServicio.setScanner(scanner);
         lesionServicio.setScanner(scanner);
+        estadioServicio.setScanner(scanner);
         
         while (true) {
             ConsoleUtils.cleanScreen();
             System.out.println("---------------------MENU PRINCIPAL---------------------------");
             System.out.println("1. Gestionar jugador");
             System.out.println("2. Gestionar lesiones");
+            System.out.println("3. Gestionar estadios");
+            System.out.println("4. Gestionar rendimientos");
+            System.out.println("5. Gestionar equipos");
+
             System.out.println("25. Salir");
             int op = ConsoleUtils.option_validation("Opcion: ", 1, 25);
             switch (op) {
@@ -52,6 +76,9 @@ public class Main {
                     break;
                 case 2:
                     lesionView.showMenu();
+                    break;
+                case 3:
+                    estadioView.showMenu();
                     break;
                 case 25:
                     scanner.close();

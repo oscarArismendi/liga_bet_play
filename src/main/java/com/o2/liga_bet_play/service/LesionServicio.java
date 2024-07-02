@@ -7,7 +7,7 @@ import com.o2.liga_bet_play.model.entity.Jugador;
 import com.o2.liga_bet_play.model.entity.Lesion;
 import com.o2.liga_bet_play.persistence.JugadorDao;
 import com.o2.liga_bet_play.persistence.LesionDao;
-
+import com.o2.liga_bet_play.service.interfaces.LesionServicioInterfaz;
 import com.o2.liga_bet_play.utils.ConsoleUtils;
 
 public class LesionServicio implements LesionServicioInterfaz {
@@ -164,7 +164,7 @@ public class LesionServicio implements LesionServicioInterfaz {
         System.out.println("Ingresa el codigo de la lesion:");
         String codigoLesion = scanner.nextLine();
         Lesion lesion = lesionDao.getLesionById(codigoLesion);
-        Jugador jdor = jugadorDao.getJugadorById(lesion.getJugador().getId());
+        Jugador jdor = lesion.getJugador();
 
         if (jdor.getLstLesiones().remove(lesion) == true) {// true si lo remueve
             System.out.println("Se le ha eliminado del jugador automaticamente");
@@ -202,4 +202,6 @@ public class LesionServicio implements LesionServicioInterfaz {
                 : "");
         System.out.println("--------------------------------------------------------------");
     }
+
+    
 }

@@ -1,4 +1,4 @@
-package com.o2.liga_bet_play.service;
+package com.o2.liga_bet_play.service.interfaces;
 
 import com.o2.liga_bet_play.model.entity.Lesion;
 
