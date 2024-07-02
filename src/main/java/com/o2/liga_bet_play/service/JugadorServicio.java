@@ -3,9 +3,11 @@ package com.o2.liga_bet_play.service;
 import java.util.Scanner;
 import java.util.Set;
 
+import com.o2.liga_bet_play.model.entity.Equipo;
 import com.o2.liga_bet_play.model.entity.Jugador;
 import com.o2.liga_bet_play.model.entity.Lesion;
 import com.o2.liga_bet_play.model.entity.Rendimiento;
+import com.o2.liga_bet_play.persistence.EquipoDao;
 import com.o2.liga_bet_play.persistence.JugadorDao;
 import com.o2.liga_bet_play.persistence.LesionDao;
 import com.o2.liga_bet_play.persistence.RendimientoDao;
@@ -16,6 +18,7 @@ public class JugadorServicio implements JugadorServicioInterfaz {
     private JugadorDao jugadorDao;
     private LesionDao lesionDao;
     private RendimientoDao rendimientoDAO;
+    private EquipoDao equipoDao;
     private Scanner scanner;
 
     public void setScanner(Scanner scanner) {
@@ -23,10 +26,12 @@ public class JugadorServicio implements JugadorServicioInterfaz {
     }
 
     // Constructor que permite la inyección de dependencias
-    public JugadorServicio(JugadorDao jugadorDao, LesionDao lesionDao, RendimientoDao rendimientoDao) {
+    public JugadorServicio(JugadorDao jugadorDao, LesionDao lesionDao, RendimientoDao rendimientoDao,
+            EquipoDao equipoDao) {
         this.jugadorDao = jugadorDao;
         this.lesionDao = lesionDao;
         this.rendimientoDAO = rendimientoDao;
+        this.equipoDao = equipoDao;
     }
 
     @Override
@@ -89,8 +94,10 @@ public class JugadorServicio implements JugadorServicioInterfaz {
         System.out.println("7. Agregar rendimiento");
         System.out.println("8. Eliminar lesion");
         System.out.println("9. Eliminar rendimiento");
-        System.out.println("10. Cancelar");
-        int option = ConsoleUtils.option_validation("opcion: ", 1, 10);
+        System.out.println("10. Agregar equipo");
+        System.out.println("11. Eliminar equipo");
+        System.out.println("12. Cancelar");
+        int option = ConsoleUtils.option_validation("opcion: ", 1, 12);
 
         switch (option) {
             case 1:
@@ -205,6 +212,37 @@ public class JugadorServicio implements JugadorServicioInterfaz {
                 ConsoleUtils.pause();
                 break;
             case 10:
+                System.out.println("Ingrese ID del equipo asociado (actual: "
+                        + (jugador.getEquipo() != null ? jugador.getEquipo().getId() : "N/A") + "):");
+                String equipoID = scanner.nextLine();
+                Equipo equipo = equipoDao.getEquipoById(equipoID);
+                if (equipo != null) {
+                    if(jugador.getEquipo() != null && equipo != jugador.getEquipo()){
+                        System.out.println("Se ha removido automaticamente del equipo con la id "+ jugador.getEquipo().getId());
+                        jugador.getEquipo().setEntrenador(null);
+                    }
+                    jugador.setEquipo(equipo);
+                    if (!equipo.getLstJugadores().contains(jugador)) {// si no contiene jugador se le agrega
+                        equipo.setLstJugadores(jugador);
+                        System.out.println("Se le ha añadido al equipo automaticamente");
+                    }
+                    System.out.println("Jugador actualizado exitosamente.");
+                    ConsoleUtils.pause();
+                } else {
+                    System.out.println("Equipo no encontrado.");
+                    ConsoleUtils.pause();
+                }
+                break;
+            case 11:
+                Equipo eqp = jugador.getEquipo();
+                jugador.setEquipo(null);
+                if (eqp.getLstJugadores().remove(jugador) == true) {// true si lo remueve
+                    System.out.println("Se le ha eliminado del equipo automaticamente.");
+                }
+                System.out.println("El jugador ya no tiene equipo.");
+                ConsoleUtils.pause();
+                break;
+            case 12:
                 return;
             default:
                 System.out.println("Opción inválida.");
@@ -259,13 +297,16 @@ public class JugadorServicio implements JugadorServicioInterfaz {
 
     @Override
     public void displayPlayerDetails(Jugador jugador) {
-
+        String strEquipo =jugador.getEquipo() != null
+        ? " - id: " + jugador.getEquipo().getId() + " | nombre: " + jugador.getEquipo().getNombre()
+        : "N/A";
         System.out.println("id: " + jugador.getId());
         System.out.println("Nombre: " + jugador.getNombre());
         System.out.println("Edad: " + jugador.getEdad());
         System.out.println("Nacionalidad: " + jugador.getNacionalidad());
         System.out.println("Dorsal: " + jugador.getNumeroCamiseta());
         System.out.println("Posicion: " + jugador.getPosicion());
+        System.out.println("Equipo:" +  strEquipo);
         System.out.println("Lesion:");
         for (Lesion lesion : jugador.getLstLesiones()) {
             System.out.println(" -id: " + lesion.getId() + " | gravedad: " + lesion.getGravedad());
