@@ -231,6 +231,12 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
 
     @Override
     public void displayPerformanceDetails(Rendimiento rendimiento) {
+        String strTarjetaRoja = rendimiento.getTarjetaRoja() != null? 
+        "ID: " + rendimiento.getTarjetaRoja().getId() + " | minuto: " + rendimiento.getTarjetaRoja().getMinuto():
+        "N/A";
+        String strJugador = rendimiento.getJugador() != null?
+        "ID: " + rendimiento.getJugador().getId() + " | nombre: " + rendimiento.getJugador().getNombre() :
+        "N/A";
         System.out.println("ID: " + rendimiento.getId());
         System.out.println("Minutos Jugados: " + rendimiento.getMinutosJugados());
         System.out.println("Asistencias: " + rendimiento.getAsistencias());
@@ -242,14 +248,8 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
         for (Tarjeta tarjetaAmarilla : rendimiento.getLstTarjetasAmarillas()) {
             System.out.println("    Tarjeta Amarilla ID: " + tarjetaAmarilla.getId());
         }
-        if (rendimiento.getTarjetaRoja() != null) {
-            System.out.println("Tarjeta Roja ID: " + rendimiento.getTarjetaRoja().getId());
-        }
-        if (rendimiento.getJugador() != null) {
-            System.out.println("Jugador: " + rendimiento.getJugador().getNombre());
-        } else {
-            System.out.println("Jugador: N/A");
-        }
+        System.out.println("Tarjeta Roja: " + strTarjetaRoja);
+        System.out.println("Jugador: " + strJugador );
         System.out.println();
     }
 }
