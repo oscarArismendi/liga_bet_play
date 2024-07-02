@@ -30,6 +30,7 @@ import com.o2.liga_bet_play.view.EquipoView;
 import com.o2.liga_bet_play.view.EstadioView;
 import com.o2.liga_bet_play.view.JugadorView;
 import com.o2.liga_bet_play.view.LesionView;
+import com.o2.liga_bet_play.view.RendimientoView;
 
 public class Main {
 
@@ -64,6 +65,7 @@ public class Main {
         EstadioView estadioView = new EstadioView(estadioServicio);
         EquipoView equipoView =  new EquipoView(equipoServicio);
         EntrenadorView entrenadorView = new EntrenadorView(entrenadorServicio);
+        RendimientoView rendimientoView = new RendimientoView(rendimientoServicio);
         //scanners
         Scanner scanner = new Scanner(System.in);
         jugadorServicio.setScanner(scanner);
@@ -71,6 +73,7 @@ public class Main {
         estadioServicio.setScanner(scanner);
         equipoServicio.setScanner(scanner);
         entrenadorServicio.setScanner(scanner);
+        rendimientoServicio.setScanner(scanner);
 
         while (true) {
             ConsoleUtils.cleanScreen();
@@ -93,6 +96,9 @@ public class Main {
                     break;
                 case 3:
                     estadioView.showMenu();
+                    break;
+                case 4:
+                    rendimientoView.showMenu();
                     break;
                 case 5:
                     equipoView.showMenu();
