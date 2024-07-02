@@ -27,6 +27,10 @@ public class EquipoServicio implements EquipoServicioInterfaz {
 
     private Scanner scanner;
 
+    public EquipoServicio(EquipoDao equipoDao) {// para pruebas
+        this.equipoDao = equipoDao;
+    }
+
     // Constructor que permite la inyección de dependencias
     public EquipoServicio(EquipoDao equipoDao, EstadioDao estadioDao, EntrenadorDao entrenadorDao,
             JugadorDao jugadorDao, PartidoDao partidoDao) {
@@ -46,15 +50,16 @@ public class EquipoServicio implements EquipoServicioInterfaz {
         ConsoleUtils.cleanScreen();
         System.out.println("---------------------MENU EQUIPO----------------------------------------");
         System.out.println("1. Crear Equipo");
-        System.out.println("2. Actualizar Equipo");
-        System.out.println("3. Buscar Equipo");
-        System.out.println("4. Eliminar Equipo");
-        System.out.println("5. Listar Todos los Equipos");
+        System.out.println("2. Buscar Equipo");
+        System.out.println("3. Eliminar Equipo");
+        System.out.println("4. Listar Todos los Equipos");
+        System.out.println("5. Actualizar Equipo");
         System.out.println("6. Salir");
     }
 
     @Override
     public void createTeam() {
+        ConsoleUtils.cleanScreen();
         System.out.println("---------------------MENU CREAR EQUIPO----------------------------------");
         String id = equipoDao.uniqueId();
         System.out.println("Ingrese nombre del equipo: ");
@@ -71,6 +76,7 @@ public class EquipoServicio implements EquipoServicioInterfaz {
 
     @Override
     public void searchTeam() {
+        ConsoleUtils.cleanScreen();
         System.out.println("---------------------MENU BUSCAR EQUIPO---------------------------------");
         System.out.println("Ingresa el codigo del equipo:");
         String id = scanner.nextLine();
@@ -125,14 +131,21 @@ public class EquipoServicio implements EquipoServicioInterfaz {
     @Override
     public void displayTeamDetails(Equipo equipo) {
         if (equipo != null) {
+            String strEstadio = equipo.getEstadio() != null
+            ? " - id: " + equipo.getEstadio().getId() + " | nombre : " + equipo.getEstadio().getNombre()
+            : "N/A"; 
+            String strEntrenador = equipo.getEntrenador() != null
+            ? " - id: " + equipo.getEntrenador().getId() + " | nombre : " + equipo.getEntrenador().getNombre()
+            : "N/A";
+            System.out.println("" + equipo.getEstadio() != null ? "true" : "false");
             System.out.println("ID: " + equipo.getId());
             System.out.println("Nombre: " + equipo.getNombre());
             System.out.println("Ciudad: " + equipo.getCiudad());
-            System.out.println("Estadio: " + equipo.getEstadio().getNombre());
-            System.out.println("Entrenador: " + equipo.getEntrenador().getNombre());
+            System.out.println("Estadio: " + strEstadio);
+            System.out.println("Entrenador: " + strEntrenador);
             System.out.println("Jugadores: ");
             for (Jugador jugador : equipo.getLstJugadores()) {
-                System.out.println("  - id: "+ jugador.getId() + " | nombre: " + jugador.getNombre());
+                System.out.println("  - id: " + jugador.getId() + " | nombre: " + jugador.getNombre());
             }
             System.out.println("Partidos: ");
             for (Partido partido : equipo.getLstPartidos()) {

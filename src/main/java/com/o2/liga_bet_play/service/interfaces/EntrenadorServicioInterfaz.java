@@ -7,7 +7,7 @@ public interface EntrenadorServicioInterfaz {
 
     void createCoach();
 
-    // void updateCoach();
+    void updateCoach();
 
     void searchCoach();
 
