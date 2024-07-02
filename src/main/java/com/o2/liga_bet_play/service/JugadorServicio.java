@@ -9,6 +9,7 @@ import com.o2.liga_bet_play.model.entity.Rendimiento;
 import com.o2.liga_bet_play.persistence.JugadorDao;
 import com.o2.liga_bet_play.persistence.LesionDao;
 import com.o2.liga_bet_play.persistence.RendimientoDao;
+import com.o2.liga_bet_play.service.interfaces.JugadorServicioInterfaz;
 import com.o2.liga_bet_play.utils.ConsoleUtils;
 
 public class JugadorServicio implements JugadorServicioInterfaz {
@@ -22,9 +23,10 @@ public class JugadorServicio implements JugadorServicioInterfaz {
     }
 
     // Constructor que permite la inyección de dependencias
-    public JugadorServicio(JugadorDao jugadorDao, LesionDao lesionDao) {
+    public JugadorServicio(JugadorDao jugadorDao, LesionDao lesionDao, RendimientoDao rendimientoDao) {
         this.jugadorDao = jugadorDao;
         this.lesionDao = lesionDao;
+        this.rendimientoDAO = rendimientoDao;
     }
 
     @Override
@@ -158,8 +160,19 @@ public class JugadorServicio implements JugadorServicioInterfaz {
                 if (rendimiento == null) {
                     System.out.println("No se encontro un rendimiento con la id: " + rendimientoId);
                 } else {
-                    jugador.setLstRendimientos(rendimiento);
-                    System.out.println("Jugador actualizado exitosamente.");
+                    if (!jugador.getLstRendimientos().contains(rendimiento)) {// si no contiene lesion se le agrega
+                        Jugador jd2 = rendimiento.getJugador();
+                        if (jd2 != null) {
+                            jd2.deleteLstRendimientos(rendimiento);
+                            System.out.println("Se ha removido automaticamente el rendimiento del jugador con la id: "
+                                    + jd2.getId());
+                        }
+                        jugador.setLstRendimientos(rendimiento);
+                        rendimiento.setJugador(jugador);
+                        System.out.println("Jugador y rendimiento actualizados exitosamente.");
+                    } else {
+                        System.out.println("El jugador ya tenia el rendimiento en su historial.");
+                    }
                 }
                 ConsoleUtils.pause();
                 break;
