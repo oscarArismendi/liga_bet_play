@@ -137,17 +137,18 @@ public class EquipoServicio implements EquipoServicioInterfaz {
             String strEntrenador = equipo.getEntrenador() != null
             ? " - id: " + equipo.getEntrenador().getId() + " | nombre : " + equipo.getEntrenador().getNombre()
             : "N/A";
-            System.out.println("" + equipo.getEstadio() != null ? "true" : "false");
+            String strJugadores = equipo.getLstJugadores().size() == 0 ? "N/A" : "";
+            String strPartidos = equipo.getLstPartidos().size() == 0 ? "N/A" : "";
             System.out.println("ID: " + equipo.getId());
             System.out.println("Nombre: " + equipo.getNombre());
             System.out.println("Ciudad: " + equipo.getCiudad());
             System.out.println("Estadio: " + strEstadio);
             System.out.println("Entrenador: " + strEntrenador);
-            System.out.println("Jugadores: ");
+            System.out.println("Jugadores: " + strJugadores);
             for (Jugador jugador : equipo.getLstJugadores()) {
                 System.out.println("  - id: " + jugador.getId() + " | nombre: " + jugador.getNombre());
             }
-            System.out.println("Partidos: ");
+            System.out.println("Partidos: " + strPartidos);
             for (Partido partido : equipo.getLstPartidos()) {
                 System.out.println("  - id: " + partido.getId() + " | fecha: " + partido.getFecha());
             }
