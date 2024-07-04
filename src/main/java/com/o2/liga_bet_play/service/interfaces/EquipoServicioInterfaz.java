@@ -7,7 +7,7 @@ public interface EquipoServicioInterfaz {
 
     void createTeam();
 
-    // void updateTeam();
+    void updateTeam();
 
     void searchTeam();
 
