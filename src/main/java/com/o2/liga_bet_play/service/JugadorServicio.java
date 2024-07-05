@@ -37,7 +37,7 @@ public class JugadorServicio implements JugadorServicioInterfaz {
     @Override
     public void displayMenu() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU JUGADOR-----------------------------");
+        System.out.println("---------------------MENU JUGADOR---------------------------------------");
         System.out.println("1. Crear jugador");
         System.out.println("2. Actualizar jugador");
         System.out.println("3. Buscar jugador");
@@ -49,7 +49,7 @@ public class JugadorServicio implements JugadorServicioInterfaz {
     @Override
     public void createPlayer() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU CREAR JUGADOR-----------------------");
+        System.out.println("---------------------MENU CREAR JUGADOR---------------------------------");
         String id = jugadorDao.uniqueId();
         System.out.println("Ingrese Nombre del jugador:");
         String nombre = scanner.nextLine();
@@ -73,7 +73,7 @@ public class JugadorServicio implements JugadorServicioInterfaz {
     @Override
     public void updatePlayer() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU ACTUALIZAR JUGADOR------------------");
+        System.out.println("---------------------MENU ACTUALIZAR JUGADOR----------------------------");
         System.out.println("Ingresa el codigo del jugador:");
         String codigoJugador = scanner.nextLine();
         Jugador jugador = jugadorDao.getJugadorById(codigoJugador);
@@ -84,7 +84,7 @@ public class JugadorServicio implements JugadorServicioInterfaz {
         }
 
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU ACTUALIZAR JUGADOR------------------");
+        System.out.println("---------------------MENU ACTUALIZAR JUGADOR----------------------------");
         System.out.println("1. Cambiar nombre");
         System.out.println("2. Cambiar edad");
         System.out.println("3. Cambiar nacionalidad");
@@ -101,34 +101,34 @@ public class JugadorServicio implements JugadorServicioInterfaz {
 
         switch (option) {
             case 1:
-                System.out.println("Ingrese el nuevo nombre (actual: " + jugador.getNombre() +"):");
+                System.out.println("Ingrese el nuevo nombre (actual: " + jugador.getNombre() + "):");
                 jugador.setNombre(scanner.nextLine());
                 System.out.println("Jugador actualizado exitosamente.");
                 ConsoleUtils.pause();
                 break;
             case 2:
 
-                System.out.println("Ingrese la nueva edad (actual: "+ jugador.getEdad() + "): ");
+                System.out.println("Ingrese la nueva edad (actual: " + jugador.getEdad() + "): ");
                 jugador.setEdad(scanner.nextInt());
                 scanner.nextLine();
                 System.out.println("Jugador actualizado exitosamente.");
                 ConsoleUtils.pause();
                 break;
             case 3:
-                System.out.println("Ingrese la nueva nacionalidad (actual: " + jugador.getNacionalidad()+ "):");
+                System.out.println("Ingrese la nueva nacionalidad (actual: " + jugador.getNacionalidad() + "):");
                 jugador.setNacionalidad(scanner.nextLine());
                 System.out.println("Jugador actualizado exitosamente.");
                 ConsoleUtils.pause();
                 break;
             case 4:
-                System.out.println("Ingrese la nueva posicion (actual: " + jugador.getPosicion()+ "):") ;
+                System.out.println("Ingrese la nueva posicion (actual: " + jugador.getPosicion() + "):");
                 jugador.setPosicion(scanner.nextLine());
                 System.out.println("Jugador actualizado exitosamente.");
                 ConsoleUtils.pause();
                 break;
             case 5:
 
-                System.out.println("Ingrese la nueva dorsal (actual: "+jugador.getNumeroCamiseta() + "):");
+                System.out.println("Ingrese la nueva dorsal (actual: " + jugador.getNumeroCamiseta() + "):");
                 jugador.setNumeroCamiseta(scanner.nextInt());
                 scanner.nextLine();
                 System.out.println("Jugador actualizado exitosamente.");
@@ -253,7 +253,7 @@ public class JugadorServicio implements JugadorServicioInterfaz {
     @Override
     public void searchPlayer() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU BUSCAR JUGADOR------------------------");
+        System.out.println("---------------------MENU BUSCAR JUGADOR---------------------------------");
         System.out.println("Ingresa el codigo del jugador:");
         String codigoJugador = scanner.nextLine();
         Jugador jugador = jugadorDao.getJugadorById(codigoJugador);
@@ -268,7 +268,7 @@ public class JugadorServicio implements JugadorServicioInterfaz {
     @Override
     public void deletePlayer() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU BUSCAR JUGADOR------------------------");
+        System.out.println("---------------------MENU ELIMINAR JUGADOR------------------------------");
         System.out.println("Ingresa el codigo del jugador:");
         String codigoJugador = scanner.nextLine();
 
@@ -285,15 +285,21 @@ public class JugadorServicio implements JugadorServicioInterfaz {
             equipo.deleteLstJugadores(jugador);
             System.out.println("Se elimino el jugador del equipo con id: " + equipo.getId());
         }
-        /* Uncomment this if you want to delete all historial for the player 
-        for (Lesion lesion : jugadorDao.getJugadorById(codigoJugador).getLstLesiones()) {
-            lesion.setJugador(null);
-            System.out.println("Se elimino el jugador de la lesion con  id:  " + lesion.getId());
-        }
-        for (Rendimiento rendimiento : jugadorDao.getJugadorById(codigoJugador).getLstRendimientos()) {
-            rendimiento.setJugador(null);
-            System.out.println("Se elimino el jugador del rendimiento con  id:  " + rendimiento.getId());
-        }*/
+        /*
+         * Uncomment this if you want to delete all historial for the player
+         * for (Lesion lesion :
+         * jugadorDao.getJugadorById(codigoJugador).getLstLesiones()) {
+         * lesion.setJugador(null);
+         * System.out.println("Se elimino el jugador de la lesion con  id:  " +
+         * lesion.getId());
+         * }
+         * for (Rendimiento rendimiento :
+         * jugadorDao.getJugadorById(codigoJugador).getLstRendimientos()) {
+         * rendimiento.setJugador(null);
+         * System.out.println("Se elimino el jugador del rendimiento con  id:  " +
+         * rendimiento.getId());
+         * }
+         */
         if (jugadorDao.deleteJugadorById(codigoJugador) != null) {
             System.out.println("Se elimino el jugador con el codigo " + codigoJugador);
         } else {
@@ -305,7 +311,7 @@ public class JugadorServicio implements JugadorServicioInterfaz {
     @Override
     public void listAllPlayers() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU TODOS LOS JUGADORES-----------------");
+        System.out.println("---------------------MENU TODOS LOS JUGADORES---------------------------");
         Set<String> keys = jugadorDao.controlador.jugadores.keySet();
         for (String key : keys) {
             Jugador jugador = jugadorDao.controlador.jugadores.get(key);
@@ -321,7 +327,7 @@ public class JugadorServicio implements JugadorServicioInterfaz {
                 : "N/A";
         String strLesion = jugador.getLstLesiones().size() == 0 ? "N/A" : "";
         String strRendimiento = jugador.getLstRendimientos().size() == 0 ? "N/A" : "";
-        
+
         System.out.println("id: " + jugador.getId());
         System.out.println("Nombre: " + jugador.getNombre());
         System.out.println("Edad: " + jugador.getEdad());

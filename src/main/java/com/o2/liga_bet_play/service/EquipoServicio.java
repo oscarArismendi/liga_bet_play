@@ -24,7 +24,6 @@ public class EquipoServicio implements EquipoServicioInterfaz {
     private EntrenadorDao entrenadorDao;
     private JugadorDao jugadorDao;
 
-
     private Scanner scanner;
 
     public EquipoServicio(EquipoDao equipoDao) {// para pruebas
@@ -95,6 +94,11 @@ public class EquipoServicio implements EquipoServicioInterfaz {
         System.out.println("Ingresa el codigo del equipo:");
         String codigoEquipo = scanner.nextLine();
         Equipo equipo = equipoDao.getEquipoById(codigoEquipo);
+        if (equipo == null) {
+            System.out.println("No se encontró un equipo con el codigo " + codigoEquipo);
+            ConsoleUtils.pause();
+            return;
+        }
         Entrenador entrenador = equipo.getEntrenador();
 
         if (entrenador != null) {
@@ -209,7 +213,13 @@ public class EquipoServicio implements EquipoServicioInterfaz {
                     ConsoleUtils.pause();
                     return;
                 }
-
+                for (Equipo eq : equipoDao.getAllEquipos()) {
+                    if (eq != equipo && eq.getEstadio() == estadio) {
+                        System.out.println("Se ha removido automaticamente el estadio " + estadio.getNombre()
+                                + " del equipo " + eq.getNombre());
+                        eq.setEstadio(null);
+                    }
+                }
                 equipo.setEstadio(estadio);
                 System.out.println("Equipo actualizado exitosamente");
                 ConsoleUtils.pause();
@@ -228,10 +238,17 @@ public class EquipoServicio implements EquipoServicioInterfaz {
                     ConsoleUtils.pause();
                     return;
                 }
-                if (entrenadorActual != null) {
-                    entrenadorActual.setEquipo(null);
+
+                if (entrenadorActual != null && entrenadorActual.getEquipo() != null) {
                     System.out.println("Se ha removido automaticamente del entrenador con la id "
-                            + entrenadorActual.getId());
+                            + entrenadorActual.getId() + " del equipo " + entrenadorActual.getEquipo().getNombre());
+                    entrenadorActual.setEquipo(null);
+                }
+                if (entrenador.getEquipo() != null) {
+                    System.out.println("Se ha removido automaticamente del entrenador con la id "
+                            + entrenador.getId() + " del equipo " + entrenador.getEquipo().getNombre());
+                    entrenador.getEquipo().setEntrenador(null);
+
                 }
                 equipo.setEntrenador(entrenador);
                 entrenador.setEquipo(equipo);
