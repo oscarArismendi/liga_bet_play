@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.o2.liga_bet_play.model.entity.Entrenador;
 import com.o2.liga_bet_play.model.entity.Equipo;
+import com.o2.liga_bet_play.model.entity.Estadio;
 import com.o2.liga_bet_play.model.entity.Jugador;
 import com.o2.liga_bet_play.model.entity.Partido;
 
@@ -12,7 +13,6 @@ import com.o2.liga_bet_play.persistence.EntrenadorDao;
 import com.o2.liga_bet_play.persistence.EquipoDao;
 import com.o2.liga_bet_play.persistence.EstadioDao;
 import com.o2.liga_bet_play.persistence.JugadorDao;
-import com.o2.liga_bet_play.persistence.PartidoDao;
 
 import com.o2.liga_bet_play.service.interfaces.EquipoServicioInterfaz;
 
@@ -23,7 +23,6 @@ public class EquipoServicio implements EquipoServicioInterfaz {
     private EstadioDao estadioDao;
     private EntrenadorDao entrenadorDao;
     private JugadorDao jugadorDao;
-    private PartidoDao partidoDao;
 
     private Scanner scanner;
 
@@ -33,12 +32,11 @@ public class EquipoServicio implements EquipoServicioInterfaz {
 
     // Constructor que permite la inyección de dependencias
     public EquipoServicio(EquipoDao equipoDao, EstadioDao estadioDao, EntrenadorDao entrenadorDao,
-            JugadorDao jugadorDao, PartidoDao partidoDao) {
+            JugadorDao jugadorDao) {
         this.equipoDao = equipoDao;
         this.estadioDao = estadioDao;
         this.entrenadorDao = entrenadorDao;
         this.jugadorDao = jugadorDao;
-        this.partidoDao = partidoDao;
     }
 
     public void setScanner(Scanner scanner) {
@@ -96,6 +94,11 @@ public class EquipoServicio implements EquipoServicioInterfaz {
         System.out.println("Ingresa el codigo del equipo:");
         String codigoEquipo = scanner.nextLine();
         Equipo equipo = equipoDao.getEquipoById(codigoEquipo);
+        if (equipo == null) {
+            System.out.println("No se encontró un equipo con el codigo " + codigoEquipo);
+            ConsoleUtils.pause();
+            return;
+        }
         Entrenador entrenador = equipo.getEntrenador();
 
         if (entrenador != null) {
@@ -132,11 +135,11 @@ public class EquipoServicio implements EquipoServicioInterfaz {
     public void displayTeamDetails(Equipo equipo) {
         if (equipo != null) {
             String strEstadio = equipo.getEstadio() != null
-            ? " - id: " + equipo.getEstadio().getId() + " | nombre : " + equipo.getEstadio().getNombre()
-            : "N/A"; 
+                    ? " - id: " + equipo.getEstadio().getId() + " | nombre : " + equipo.getEstadio().getNombre()
+                    : "N/A";
             String strEntrenador = equipo.getEntrenador() != null
-            ? " - id: " + equipo.getEntrenador().getId() + " | nombre : " + equipo.getEntrenador().getNombre()
-            : "N/A";
+                    ? " - id: " + equipo.getEntrenador().getId() + " | nombre : " + equipo.getEntrenador().getNombre()
+                    : "N/A";
             String strJugadores = equipo.getLstJugadores().size() == 0 ? "N/A" : "";
             String strPartidos = equipo.getLstPartidos().size() == 0 ? "N/A" : "";
             System.out.println("ID: " + equipo.getId());
@@ -156,6 +159,146 @@ public class EquipoServicio implements EquipoServicioInterfaz {
             System.out.println("Equipo no encontrado.");
         }
         System.out.println("------------------------------------------------------------------------");
+    }
+
+    @Override
+    public void updateTeam() {
+        ConsoleUtils.cleanScreen();
+        System.out.println("---------------------MENU ACTUALIZAR EQUIPO-----------------------------");
+        System.out.println("Ingrese el código del equipo:");
+        String id = scanner.nextLine();
+        Equipo equipo = equipoDao.getEquipoById(id);
+        if (equipo == null) {
+            System.out.println("No se encontró un equipo con el código " + id);
+            ConsoleUtils.pause();
+            return;
+        }
+
+        ConsoleUtils.cleanScreen();
+        System.out.println("---------------------MENU ACTUALIZAR EQUIPO-----------------------------");
+        System.out.println("1. Cambiar nombre");
+        System.out.println("2. Cambiar ciudad");
+        System.out.println("3. Cambiar estadio");
+        System.out.println("4. Cambiar  entrenador");
+        System.out.println("5. Agregar jugador");
+        System.out.println("6. Eliminar jugador");
+        System.out.println("7. Cancelar");
+
+        int option = ConsoleUtils.option_validation("opcion: ", 1, 7);
+
+        switch (option) {
+            case 1:
+                System.out.println("Ingrese el nuevo nombre del equipo (actual: " + equipo.getNombre() + ")");
+                equipo.setNombre(scanner.nextLine());
+                System.out.println("Equipo actualizado exitosamente");
+                ConsoleUtils.pause();
+                break;
+            case 2:
+                System.out.println("Ingrese la nueva ciudad del equipo (actual: " + equipo.getCiudad() + ")");
+                equipo.setCiudad(scanner.nextLine());
+                System.out.println("Equipo actualizado exitosamente");
+                ConsoleUtils.pause();
+                break;
+            case 3:
+
+                String strEstadio = equipo.getEstadio() != null
+                        ? " id: " + equipo.getEstadio().getId() + " | nombre: " + equipo.getEstadio().getNombre()
+                        : "N/A";
+                System.out.println("Ingrese el codigo del nuevo estadio del equipo (actual: " + strEstadio + ")");
+                String estadioId = scanner.nextLine();
+                Estadio estadio = estadioDao.getEstadioById(estadioId);
+
+                if (estadio == null) {
+                    System.out.println("No se encontró un estadio con el código " + estadioId);
+                    ConsoleUtils.pause();
+                    return;
+                }
+                for (Equipo eq : equipoDao.getAllEquipos()) {
+                    if (eq != equipo && eq.getEstadio() == estadio) {
+                        System.out.println("Se ha removido automaticamente el estadio " + estadio.getNombre()
+                                + " del equipo " + eq.getNombre());
+                        eq.setEstadio(null);
+                    }
+                }
+                equipo.setEstadio(estadio);
+                System.out.println("Equipo actualizado exitosamente");
+                ConsoleUtils.pause();
+                break;
+            case 4:
+                Entrenador entrenadorActual = equipo.getEntrenador();
+                String strEntrenador = entrenadorActual != null
+                        ? " id: " + equipo.getEntrenador().getId() + " | nombre: " + equipo.getEntrenador().getNombre()
+                        : "N/A";
+                System.out.println("Ingrese el codigo del nuevo entrenador del equipo (actual: " + strEntrenador + ")");
+                String entrenadorId = scanner.nextLine();
+                Entrenador entrenador = entrenadorDao.getEntrenadorById(entrenadorId);
+
+                if (entrenador == null) {
+                    System.out.println("No se encontró un entrenador con el código " + entrenadorId);
+                    ConsoleUtils.pause();
+                    return;
+                }
+
+                if (entrenadorActual != null && entrenadorActual.getEquipo() != null) {
+                    System.out.println("Se ha removido automaticamente del entrenador con la id "
+                            + entrenadorActual.getId() + " del equipo " + entrenadorActual.getEquipo().getNombre());
+                    entrenadorActual.setEquipo(null);
+                }
+                if (entrenador.getEquipo() != null) {
+                    System.out.println("Se ha removido automaticamente del entrenador con la id "
+                            + entrenador.getId() + " del equipo " + entrenador.getEquipo().getNombre());
+                    entrenador.getEquipo().setEntrenador(null);
+
+                }
+                equipo.setEntrenador(entrenador);
+                entrenador.setEquipo(equipo);
+                System.out.println("Equipo y entrenador actualizado exitosamente");
+                ConsoleUtils.pause();
+                break;
+            case 5:
+
+                System.out.println("Ingrese la id del jugador a añadir:");
+                String jugadorId = scanner.nextLine();
+                Jugador jugador = jugadorDao.getJugadorById(jugadorId);
+                if (jugador == null) {
+                    System.out.println("No se encontro una jugador con la id: " + jugadorId);
+                } else {
+                    if (!equipo.getLstJugadores().contains(jugador)) {// si no contiene lesion se le agrega
+                        Equipo eq2 = jugador.getEquipo();
+                        if (eq2 != null) {
+                            eq2.deleteLstJugadores(jugador);
+                            System.out.println(
+                                    "Se ha removido automaticamente el jugador del equipo con la id: " + eq2.getId());
+                        }
+                        equipo.setLstJugadores(jugador);
+                        jugador.setEquipo(equipo);
+                        System.out.println("Jugador y equipo actualizados exitosamente.");
+
+                    } else {
+                        System.out.println("El equipo ya tenia el jugador en su plantel.");
+                    }
+                }
+                ConsoleUtils.pause();
+                break;
+            case 6:
+                System.out.println("Ingrese la id del jugador a eliminar:");
+                String jugId = scanner.nextLine();
+                Jugador jug = jugadorDao.getJugadorById(jugId);
+                if (jug == null) {
+                    System.out.println("No se encontro una jugador con la id: " + jugId);
+                } else {
+                    jug.setEquipo(null);
+                    equipo.deleteLstJugadores(jug);
+                    System.out.println("Jugador  y equipo actualizado exitosamente.");
+                }
+                ConsoleUtils.pause();
+                break;
+            case 7:
+                return;
+            default:
+                break;
+        }
+
     }
 
 }

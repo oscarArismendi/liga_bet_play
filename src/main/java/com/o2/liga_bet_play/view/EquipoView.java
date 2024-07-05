@@ -30,7 +30,7 @@ public class EquipoView {
                     equipoServicio.listAllTeams();
                     break;
                 case 5:
-                    // equipoServicio.updateTeam();
+                    equipoServicio.updateTeam();
                     break;
                 case 6:
                     return;

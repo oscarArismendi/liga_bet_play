@@ -55,7 +55,7 @@ public class Main {
         LesionServicio lesionServicio = new LesionServicio(lesionDao, jugadorDao);
         RendimientoServicio rendimientoServicio =  new  RendimientoServicio(rendimientoDao, jugadorDao);
         EstadioServicio estadioServicio = new EstadioServicio(estadioDao,equipoDao);
-        EquipoServicio equipoServicio = new  EquipoServicio(equipoDao);
+        EquipoServicio equipoServicio = new  EquipoServicio(equipoDao,estadioDao,entrenadorDao,jugadorDao);
         EntrenadorServicio entrenadorServicio  = new EntrenadorServicio(entrenadorDao, equipoDao);
         
         
