@@ -84,7 +84,7 @@ public class LesionServicio implements LesionServicioInterfaz {
 
         switch (option) {
             case 1:
-                System.out.println("Ingrese nuevo Tipo de lesion (actual: " + lesion.getTipo() + "):");
+                System.out.println("Ingrese nuevo tipo de lesion (actual: " + lesion.getTipo() + "):");
                 lesion.setTipo(scanner.nextLine());
                 System.out.println("Lesion actualizada exitosamente.");
                 ConsoleUtils.pause();

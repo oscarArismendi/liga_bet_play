@@ -30,7 +30,7 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
     @Override
     public void displayMenu() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU RENDIMIENTO-----------------------------");
+        System.out.println("---------------------MENU RENDIMIENTO-----------------------------------");
         System.out.println("1. Crear rendimiento");
         System.out.println("2. Actualizar rendimiento");
         System.out.println("3. Buscar rendimiento");
@@ -42,7 +42,7 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
     @Override
     public void createPerformance() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU CREAR RENDIMIENTO-----------------------");
+        System.out.println("---------------------MENU CREAR RENDIMIENTO-----------------------------");
         String id = rendimientoDao.uniqueId();
         System.out.println("Ingrese minutos jugados:");
         int minutosJugados = scanner.nextInt();
@@ -61,7 +61,7 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
     @Override
     public void updatePerformance() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU ACTUALIZAR RENDIMIENTO------------------");
+        System.out.println("---------------------MENU ACTUALIZAR RENDIMIENTO------------------------");
         System.out.println("Ingrese ID del rendimiento a actualizar:");
         String id = scanner.nextLine();
         Rendimiento rendimiento = rendimientoDao.getRendimientoById(id);
@@ -73,7 +73,7 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
         }
 
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU ACTUALIZAR RENDIMIENTO------------------");
+        System.out.println("---------------------MENU ACTUALIZAR RENDIMIENTO------------------------");
         System.out.println("1. Cambiar minutos jugados");
         System.out.println("2. Cambiar asistencias");
         System.out.println("3. Agregar gol");
@@ -184,7 +184,7 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
     @Override
     public void searchPerformance() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU BUSCAR RENDIMIENTO-------------------------");
+        System.out.println("---------------------MENU BUSCAR RENDIMIENTO----------------------------");
         System.out.println("Ingresa el codigo del rendimiento:");
         String codigoRendimiento = scanner.nextLine();
         Rendimiento rendimiento = rendimientoDao.getRendimientoById(codigoRendimiento);
@@ -200,7 +200,7 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
     @Override
     public void deletePerformance() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU BUSCAR RENDIMIENTO------------------------");
+        System.out.println("---------------------MENU BUSCAR RENDIMIENTO----------------------------");
         System.out.println("Ingresa el codigo del rendimiento:");
         String codigoRendimiento = scanner.nextLine();
         Rendimiento rendimiento = rendimientoDao.getRendimientoById(codigoRendimiento);
@@ -220,7 +220,7 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
     @Override
     public void listAllPerformances() {
         ConsoleUtils.cleanScreen();
-        System.out.println("---------------------MENU TODOS LOS RENDIMIENTOS------------------");
+        System.out.println("---------------------MENU TODOS LOS RENDIMIENTOS------------------------");
         Set<String> keys = rendimientoDao.controlador.rendimientos.keySet();
         for (String key : keys) {
             Rendimiento rendimiento = rendimientoDao.controlador.rendimientos.get(key);
@@ -231,25 +231,29 @@ public class RendimientoServicio implements RendimientoServicioInterfaz {
 
     @Override
     public void displayPerformanceDetails(Rendimiento rendimiento) {
+        // Default strings if performance doesn't have atributes
+        String strTarjetaRoja = rendimiento.getTarjetaRoja() != null? 
+        "ID: " + rendimiento.getTarjetaRoja().getId() + " | minuto: " + rendimiento.getTarjetaRoja().getMinuto():
+        "N/A";
+        String strJugador = rendimiento.getJugador() != null?
+        "ID: " + rendimiento.getJugador().getId() + " | nombre: " + rendimiento.getJugador().getNombre() :
+        "N/A";
+        String strGol = rendimiento.getLstGoles().size() == 0 ? "N/A" : "";
+        String strTarjetasAmarillas = rendimiento.getLstTarjetasAmarillas().size() == 0 ? "N/A" : "";
         System.out.println("ID: " + rendimiento.getId());
         System.out.println("Minutos Jugados: " + rendimiento.getMinutosJugados());
         System.out.println("Asistencias: " + rendimiento.getAsistencias());
-        System.out.println("Goles: ");
+        System.out.println("Goles: " + strGol);
         for (Gol gol : rendimiento.getLstGoles()) {
             System.out.println("    Gol ID: " + gol.getId());
         }
-        System.out.println("Tarjetas Amarillas: ");
+        System.out.println("Tarjetas Amarillas: " + strTarjetasAmarillas);
         for (Tarjeta tarjetaAmarilla : rendimiento.getLstTarjetasAmarillas()) {
             System.out.println("    Tarjeta Amarilla ID: " + tarjetaAmarilla.getId());
         }
-        if (rendimiento.getTarjetaRoja() != null) {
-            System.out.println("Tarjeta Roja ID: " + rendimiento.getTarjetaRoja().getId());
-        }
-        if (rendimiento.getJugador() != null) {
-            System.out.println("Jugador: " + rendimiento.getJugador().getNombre());
-        } else {
-            System.out.println("Jugador: N/A");
-        }
+        System.out.println("Tarjeta Roja: " + strTarjetaRoja);
+        System.out.println("Jugador: " + strJugador );
         System.out.println();
+        System.out.println("-------------------------------------------------------------------------");
     }
 }
