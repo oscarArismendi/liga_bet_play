@@ -1,3 +1,6 @@
+# Autores
+- Oscar Fernando Arismendi Galvis
+- Oscar Fabian Mantilla Ochoa
 # liga_bet_play
 
 La Liga BetPlay es la liga de fútbol profesional de Colombia, que requiere un sistema de gestión
