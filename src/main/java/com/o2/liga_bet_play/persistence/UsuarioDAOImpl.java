@@ -3,11 +3,10 @@ package com.o2.liga_bet_play.persistence;
 import com.o2.liga_bet_play.model.entity.Usuario;
 import com.o2.liga_bet_play.persistence.UsuarioDAOEnum.UsuarioDAO;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Hashtable;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
-    private Map<String, Usuario> usuarios = new HashMap<>();
+    private Hashtable<String, Usuario> usuarios = new Hashtable<>();
 
     @Override
     public void addUsuario(Usuario usuario) {
@@ -25,5 +24,21 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     @Override
     public String toString() {
         return "UsuarioDAOImpl [usuarios=" + usuarios + "]";
+    }
+
+    public void deleteUsuario(String email) {
+        if (usuarios.remove(email) != null) {
+            System.out.println("Usuario eliminado exitosamente.");
+        } else {
+            System.out.println("Usuario no encontrado.");
+        }
+    }
+
+    public Usuario[] getAllUsuarios() {
+        return usuarios.values().toArray(new Usuario[0]);
+    }
+
+    public Hashtable<String, Usuario> getUsuarios() {
+        return usuarios;
     }
 }
